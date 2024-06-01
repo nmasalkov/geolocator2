@@ -1,0 +1,7 @@
+<%= turbo_stream.replace 'locations' do %>
+  <%= render partial: 'list', locals: { locations: @locations } %>
+<% end %>
+
+<%= turbo_stream.replace 'pagination' do %>
+  <%= will_paginate @locations, renderer: RemoteLinkPaginationHelper::LinkRenderer %>
+<% end %>

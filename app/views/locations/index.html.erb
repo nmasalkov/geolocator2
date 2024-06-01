@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>PLACE HOLDER</h1>
+  <p>Saved locations:</p>
+
+  <div class="flex justify-center">
+    <turbo-frame id="locations">
+      <table class="min-w-full bg-white">
+        <thead class="bg-blue-500 text-white">
+        <tr>
+          <th>URL</th>
+          <th>IP</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= render partial: 'list', locals: { locations: @locations } %>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <%= will_paginate @locations, renderer: RemoteLinkPaginationHelper::LinkRenderer %>
+      </div>
+    </turbo-frame>
+  </div>
+</div>
