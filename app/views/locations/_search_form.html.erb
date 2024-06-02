@@ -1,0 +1,14 @@
+<%= form_with url: search_locations_path, method: :post, data: { turbo_frame: 'search_result' } do |form| %>
+  <div>
+    <label>
+      <%= form.radio_button :type, 'url', checked: true %>
+      URL
+    </label>
+    <label>
+      <%= form.radio_button :type, 'ip_address' %>
+      IP
+    </label>
+    <%= form.text_field :source, placeholder: 'type url here', required: true %>
+    <%= form.submit 'Find location!' %>
+  </div>
+<% end %>

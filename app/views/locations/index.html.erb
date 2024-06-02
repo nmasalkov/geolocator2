@@ -1,25 +1,19 @@
 <div class="container">
-  <h1>PLACE HOLDER</h1>
-  <p>Saved locations:</p>
+  <h1>Geolocator</h1>
 
-  <div class="flex justify-center">
+  <div>
+    <%= render 'search_form' %>
+  </div>
+
+  <h2>Location:</h2>
+    <%= render 'locations_table', location: @location %>
+  <h2>Saved locations:</h2>
+  <div>
     <turbo-frame id="locations">
-      <table class="min-w-full bg-white">
-        <thead class="bg-blue-500 text-white">
-        <tr>
-          <th>URL</th>
-          <th>IP</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%= render partial: 'list', locals: { locations: @locations } %>
-        </tbody>
-      </table>
       <div class="pagination">
         <%= will_paginate @locations, renderer: RemoteLinkPaginationHelper::LinkRenderer %>
       </div>
+      <%= render 'locations_table', locations: @locations %>
     </turbo-frame>
   </div>
 </div>
