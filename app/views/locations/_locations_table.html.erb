@@ -1,35 +1,32 @@
-<turbo-frame id="search_result">
-  <%= render 'message', message: @message %>
-  <table>
-    <thead>
+<%= render 'message', message: @message %>
+<table>
+  <thead>
+  <tr>
+    <th>URL</th>
+    <th>IP</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if defined?(location) %>
     <tr>
-      <th>URL</th>
-      <th>IP</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% if defined?(location) %>
-      <tr>
-        <% if location %>
-          <td><%= location.url %></td>
-          <td><%= location.ip_address %></td>
-          <td><%= location.latitude %></td>
-          <td><%= location.longitude %></td>
-        <% end %>
-      </tr>
-    <% else %>
-      <% locations.each do |location| %>
-        <tr>
-          <td><%= location.url %></td>
-          <td><%= location.ip_address %></td>
-          <td><%= location.latitude %></td>
-          <td><%= location.longitude %></td>
-        </tr>
+      <% if location %>
+        <td><%= location.url %></td>
+        <td><%= location.ip_address %></td>
+        <td><%= location.latitude %></td>
+        <td><%= location.longitude %></td>
       <% end %>
+    </tr>
+  <% else %>
+    <% locations.each do |location| %>
+      <tr>
+        <td><%= location.url %></td>
+        <td><%= location.ip_address %></td>
+        <td><%= location.latitude %></td>
+        <td><%= location.longitude %></td>
+      </tr>
     <% end %>
-    </tbody>
-  </table>
-
-</turbo-frame>
+  <% end %>
+  </tbody>
+</table>

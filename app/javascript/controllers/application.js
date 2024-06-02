@@ -1,4 +1,5 @@
 import { Application } from "@hotwired/stimulus"
+import "leaflet"
 
 const application = Application.start()
 

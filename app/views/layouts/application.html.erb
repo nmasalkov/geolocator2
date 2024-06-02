@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Geolocator2</title>
-    <meta name="viewport">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-  <body>
-    <main>
-      <%= yield %>
-    </main>
-  </body>
+<head>
+  <title>Geolocator2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css", integrity: "sha256-BPfK9M5v34c2XP6p0cxVz1mUQLst0gTLk0mlc7kuodA=", crossorigin: "" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+<main>
+  <%= yield %>
+</main>
+<%= javascript_include_tag "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js", integrity: "sha256-yDc0eil8GjWFKqN1OSzHSVCiuGghTosZCcRje4tj7iQ=", crossorigin: "", defer: true %>
+</body>
 </html>

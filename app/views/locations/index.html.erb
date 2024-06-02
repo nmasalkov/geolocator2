@@ -6,7 +6,10 @@
   </div>
 
   <h2>Location:</h2>
+  <turbo-frame id="search_result">
     <%= render 'locations_table', location: @location %>
+<!--    <div id="map" data-controller="map" data-map-target="map" style="height: 500px;"></div>-->
+  </turbo-frame>
 
   <h2>Saved locations:</h2>
   <div>
