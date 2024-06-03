@@ -1,19 +1,15 @@
 class LocationsController < ApplicationController
+  include Pagy::Backend
+
   before_action :check_input, only: [:search]
 
   def index
-    @locations = Location.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @pagy, @locations = pagy(Location.order(created_at: :desc), items: 10)
+
     respond_to do |format|
       format.html
       format.turbo_stream
     end
-  end
-
-  def respond_with_existing_location
-    @location = existing_location
-    @message = 'Location is taken from saved'
-
-    respond
   end
 
   def search
@@ -22,11 +18,19 @@ class LocationsController < ApplicationController
 
   private
 
+  def respond_with_existing_location
+    @location = existing_location
+    @message = 'Location is taken from saved'
+
+    respond
+  end
+
   def respond_with_new_location
     creator = LocationCreator.new(@search_params)
     creator.call
     @location = creator.location
     @message = creator.message
+    @created = creator.created
 
     respond
   end
@@ -55,9 +59,12 @@ class LocationsController < ApplicationController
   end
 
   def check_input
-    @message = LocationsCreateContract.new.call(search_params).errors
+    contract = LocationsCreateContract.new.call(search_params)
+    if contract.failure?
+      @message = contract.errors.to_h.values.join(',')
 
-    respond if @message
+      respond
+    end
   end
 end
 

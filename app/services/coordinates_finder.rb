@@ -23,7 +23,6 @@ class CoordinatesFinder
     extract_geocoder_data(response) if response
   end
 
-  # all these nil safety measures may be an overkill, but geocoder looked like a blackbox in some of it's responses
   def extract_geocoder_data(response)
     location_data = response&.data&.dig('loc')
     latitude = location_data&.split(',').try(:at, 0)

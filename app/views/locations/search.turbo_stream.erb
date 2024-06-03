@@ -1,6 +1,11 @@
 <%= turbo_stream.replace "search_result" do %>
-  <turbo-frame id="search_result">
-    <%= render partial: 'locations_table', locals: { location: @location } %>
-    <div id="map" data-controller="map" data-map-target="map" style="height: 500px;"></div>
-  </turbo-frame>
+  <%= render 'search_result', locals: { locations: @location, message: @message } %>
+<% end %>
+
+<% if @created %>
+  <%= turbo_stream.prepend 'locations_content_frame' do %>
+    <div class="row">
+      <%= render partial: 'location_content', locals: { location: @location } %>
+    </div>
+  <% end %>
 <% end %>

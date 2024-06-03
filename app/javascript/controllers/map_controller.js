@@ -17,13 +17,20 @@ export default class extends Controller {
         const mapElement = this.mapTarget;
         if (!mapElement) return;
 
-        // Check if the map is already initialized to prevent reinitialization
+        const latitude = mapElement.dataset.mapLatitude;
+        const longitude = mapElement.dataset.mapLongitude;
+
+        if (!latitude || !longitude) {
+            console.error("Latitude or Longitude data attribute is missing.");
+            return;
+        }
+
         if (this.map) {
             this.map.remove();
         }
 
-        this.map = L.map(this.mapTarget).setView([51.505, -0.09], 13);
-        L.marker([51.5, -0.09]).addTo(this.map);
+        this.map = L.map(this.mapTarget).setView([latitude, longitude], 13);
+        L.marker([latitude, longitude]).addTo(this.map);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

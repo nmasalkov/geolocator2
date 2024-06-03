@@ -1,6 +1,11 @@
-<%= turbo_stream.replace 'locations' do %>
-  <%= render partial: 'locations_table', locals: { locations: @locations } %>
-  <div class="pagination">
-    <%= will_paginate @locations, renderer: RemoteLinkPaginationHelper::LinkRenderer %>
-  </div>
+<%= turbo_stream.append 'locations_content_frame' do %>
+  <% @locations.each do |location| %>
+    <div class="row">
+      <%= render partial: 'location_content', locals: { location: location } %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "more" do %>
+  <%= render "load_more_button" %>
 <% end %>

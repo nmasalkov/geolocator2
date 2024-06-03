@@ -1,0 +1,3 @@
+<% if @pagy.next.present? %>
+  <%= button_to "Load more", locations_path, params: { page: @pagy.next }, method: :get, "data-turbo-stream": true %>
+<% end %>

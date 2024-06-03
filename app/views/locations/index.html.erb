@@ -7,17 +7,14 @@
 
   <h2>Location:</h2>
   <turbo-frame id="search_result">
-    <%= render 'locations_table', location: @location %>
-<!--    <div id="map" data-controller="map" data-map-target="map" style="height: 500px;"></div>-->
   </turbo-frame>
 
   <h2>Saved locations:</h2>
   <div>
-    <turbo-frame id="locations">
-      <div class="pagination">
-        <%= will_paginate @locations, renderer: RemoteLinkPaginationHelper::LinkRenderer %>
-      </div>
-      <%= render 'locations_table', locations: @locations %>
+    <%= render 'locations_list', locations: @locations %>
+
+    <turbo-frame id="more">
+      <%= render 'load_more_button' %>
     </turbo-frame>
   </div>
 </div>

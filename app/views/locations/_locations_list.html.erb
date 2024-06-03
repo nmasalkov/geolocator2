@@ -1,0 +1,15 @@
+<div class="locations-grid">
+  <div class="row header">
+    <div class="cell">URL</div>
+    <div class="cell">IP</div>
+    <div class="cell">Latitude</div>
+    <div class="cell">Longitude</div>
+  </div>
+  <turbo-frame id="locations_content_frame">
+    <% @locations.each do |location| %>
+      <div class="row">
+        <%= render partial: 'location_content', locals: { location: location } %>
+      </div>
+    <% end %>
+  </turbo-frame>
+</div>

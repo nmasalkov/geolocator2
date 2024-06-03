@@ -1,0 +1,14 @@
+<turbo-frame id="search_result">
+  <% if @message %>
+    <p><%= @message %></p>
+  <% end %>
+
+  <% if @location.present? %>
+    <%= render partial: 'location_table', locals: { location: @location } %>
+    <div id="map" data-controller="map"
+         data-map-target="map"
+         data-map-latitude="<%= @location.latitude %>"
+         data-map-longitude="<%= @location.longitude %>"
+         style="height: 500px;"></div>
+  <% end %>
+</turbo-frame>

@@ -1,6 +1,6 @@
 class LocationCreator
   attr_accessor :location
-  attr_reader :type, :message, :source
+  attr_reader :type, :message, :source, :created
 
   def initialize(params)
     @source = params[:source]
@@ -16,7 +16,6 @@ class LocationCreator
     unresolved_ip_result
   rescue CoordinatesFinder::CoordinatesNotFound
     unresolved_coordinates_result
-  # trying to save from dead db
   rescue ActiveRecord::StatementInvalid, ActiveRecord::ConnectionTimeoutError
     unresolved_record_saving
   end
@@ -37,6 +36,7 @@ class LocationCreator
     if location.save
       @location = LocationsBlueprint.render_as_struct(location)
       @message = 'Location was detected and saved'
+      @created = true
     elsif location.errors
       unresolved_record_saving(error: location.errors.full_messages.join(', '))
     end

@@ -8,6 +8,11 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+#map {
+    height: 200px;
+    width: 100%;
+}
+
 p {
     text-align: center;
     font-size: 1.5rem;
@@ -52,4 +57,27 @@ tbody tr:nth-child(even) {
 
 .pagination a:hover {
     text-decoration: underline;
+}
+
+.locations-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.header {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.cell {
+    flex: 1;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
